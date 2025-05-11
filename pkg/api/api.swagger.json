@@ -1,0 +1,596 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Bank"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/accounts": {
+      "get": {
+        "operationId": "Bank_GetAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bankGetAccountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Bank"
+        ]
+      },
+      "post": {
+        "operationId": "Bank_CreateAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bankCreateAccountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
+        "tags": [
+          "Bank"
+        ]
+      }
+    },
+    "/card": {
+      "get": {
+        "operationId": "Bank_GetCards",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bankGetCardsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Bank"
+        ]
+      },
+      "post": {
+        "operationId": "Bank_CreateCard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bankCreateCardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bankCreateCardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Bank"
+        ]
+      }
+    },
+    "/credit": {
+      "post": {
+        "operationId": "Bank_CreateCredit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bankCreateCreditResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bankCreateCreditRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Bank"
+        ]
+      }
+    },
+    "/schedule/{creditId}": {
+      "get": {
+        "operationId": "Bank_GetPaymentSchedule",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bankGetPaymentScheduleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "creditId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Bank"
+        ]
+      }
+    },
+    "/transaction": {
+      "get": {
+        "operationId": "Bank_GetTransactions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bankGetTransactionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Bank"
+        ]
+      }
+    },
+    "/transfer": {
+      "post": {
+        "operationId": "Bank_Transfer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bankTransferRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Bank"
+        ]
+      }
+    },
+    "/user/login": {
+      "post": {
+        "operationId": "Bank_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/bankLoginResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bankLoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Bank"
+        ]
+      }
+    },
+    "/user/register": {
+      "post": {
+        "operationId": "Bank_Register",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/bankRegisterRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Bank"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "GetAccountsResponseAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/definitions/typeMoney"
+        }
+      }
+    },
+    "GetPaymentScheduleResponsePayment": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "CreditID": {
+          "type": "string"
+        },
+        "dueDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "amount": {
+          "$ref": "#/definitions/typeMoney"
+        },
+        "penalty": {
+          "$ref": "#/definitions/typeMoney"
+        },
+        "status": {
+          "$ref": "#/definitions/GetPaymentScheduleResponsePaymentStatus"
+        },
+        "paidAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "GetPaymentScheduleResponsePaymentStatus": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "PENDING",
+        "OVERDUE",
+        "PAID"
+      ],
+      "default": "UNKNOWN"
+    },
+    "GetTransactionsResponseTransaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "idFrom": {
+          "type": "string"
+        },
+        "idTo": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/definitions/typeMoney"
+        },
+        "status": {
+          "$ref": "#/definitions/bankGetTransactionsResponseStatus"
+        }
+      }
+    },
+    "bankCard": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string"
+        },
+        "expDate": {
+          "type": "string"
+        },
+        "CVV": {
+          "type": "string"
+        }
+      }
+    },
+    "bankCreateAccountResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "bankCreateCardRequest": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        }
+      }
+    },
+    "bankCreateCardResponse": {
+      "type": "object",
+      "properties": {
+        "card": {
+          "$ref": "#/definitions/bankCard"
+        }
+      }
+    },
+    "bankCreateCreditRequest": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/definitions/typeMoney"
+        },
+        "month": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "bankCreateCreditResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "interestRate": {
+          "type": "string",
+          "format": "int64"
+        },
+        "months": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "bankGetAccountsResponse": {
+      "type": "object",
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GetAccountsResponseAccount"
+          }
+        }
+      }
+    },
+    "bankGetCardsResponse": {
+      "type": "object",
+      "properties": {
+        "cards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/bankCard"
+          }
+        }
+      }
+    },
+    "bankGetPaymentScheduleResponse": {
+      "type": "object",
+      "properties": {
+        "payments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GetPaymentScheduleResponsePayment"
+          }
+        }
+      }
+    },
+    "bankGetTransactionsResponse": {
+      "type": "object",
+      "properties": {
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GetTransactionsResponseTransaction"
+          }
+        }
+      }
+    },
+    "bankGetTransactionsResponseStatus": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "PENDING",
+        "COMPLETED"
+      ],
+      "default": "UNKNOWN"
+    },
+    "bankLoginRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "bankLoginResponse": {
+      "type": "object",
+      "properties": {
+        "authToken": {
+          "type": "string"
+        }
+      }
+    },
+    "bankRegisterRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "bankTransferRequest": {
+      "type": "object",
+      "properties": {
+        "idFrom": {
+          "type": "string"
+        },
+        "idTo": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/definitions/typeMoney"
+        }
+      }
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "typeMoney": {
+      "type": "object",
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "description": "The three-letter currency code defined in ISO 4217."
+        },
+        "units": {
+          "type": "string",
+          "format": "int64",
+          "description": "The whole units of the amount.\nFor example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+        },
+        "nanos": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of nano (10^-9) units of the amount.\nThe value must be between -999,999,999 and +999,999,999 inclusive.\nIf `units` is positive, `nanos` must be positive or zero.\nIf `units` is zero, `nanos` can be positive, zero, or negative.\nIf `units` is negative, `nanos` must be negative or zero.\nFor example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
+        }
+      },
+      "description": "Represents an amount of money with its currency type."
+    }
+  }
+}

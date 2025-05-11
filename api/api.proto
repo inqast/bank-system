@@ -1,0 +1,184 @@
+syntax = "proto3";
+
+package bank;
+option go_package = "pkg/api;api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/type/money.proto";
+
+service Bank {
+    rpc Register (RegisterRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+          post: "/user/register"
+          body: "*"
+        };
+    }
+
+    rpc Login (LoginRequest) returns (LoginResponse) {
+        option (google.api.http) = {
+            post: "/user/login"
+            body: "*"
+        };
+    }
+
+    rpc CreateAccount (google.protobuf.Empty) returns (CreateAccountResponse) {
+        option (google.api.http) = {
+            post: "/accounts"
+            body: "*"
+        };
+    }
+
+    rpc GetAccounts (google.protobuf.Empty) returns (GetAccountsResponse) {
+        option (google.api.http) = {
+            get: "/accounts"
+        };
+    }
+
+    rpc CreateCard (CreateCardRequest) returns (CreateCardResponse) {
+        option (google.api.http) = {
+            post: "/card"
+            body: "*"
+        };
+    }
+
+    rpc GetCards (google.protobuf.Empty) returns (GetCardsResponse) {
+        option (google.api.http) = {
+            get: "/card"
+        };
+    }
+
+    rpc Transfer (TransferRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/transfer"
+            body: "*"
+        };
+    }
+
+    rpc GetTransactions (google.protobuf.Empty) returns (GetTransactionsResponse) {
+        option (google.api.http) = {
+            get: "/transaction"
+        };
+    }
+
+    rpc CreateCredit (CreateCreditRequest) returns (CreateCreditResponse) {
+        option (google.api.http) = {
+            post: "/credit"
+            body: "*"
+        };
+    }
+
+    rpc GetPaymentSchedule (GetPaymentScheduleRequest) returns (GetPaymentScheduleResponse) {
+        option (google.api.http) = {
+            get: "/schedule/{credit_id}"
+        };
+    }
+}
+
+message RegisterRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message RegisterResponse {
+    string auth_token = 1;
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string auth_token = 1;
+}
+
+message CreateAccountResponse {
+    string id = 1;
+}
+
+message GetAccountsResponse {
+    message Account {
+        string id = 1;
+        google.type.Money amount = 2;
+    }
+    repeated Account accounts = 1;
+}
+
+message Card {
+    string number = 1;
+    string exp_date = 2;
+    string CVV = 3;
+}
+
+message CreateCardRequest {
+    string account_id = 1;
+}
+
+message CreateCardResponse {
+    Card card = 1;
+}
+
+message GetCardsResponse {
+    repeated Card cards = 1;
+}
+
+message TransferRequest {
+    string id_from = 1;
+    string id_to = 2;
+    google.type.Money amount = 3;
+}
+
+message GetTransactionsResponse {
+    enum Status {
+        UNKNOWN = 0;
+        PENDING = 1;
+        COMPLETED = 3;
+    }
+
+    message Transaction {
+        string id = 1;
+        string id_from = 2;
+        string id_to = 3;
+        google.type.Money amount = 4;
+        Status status = 5;
+    }
+    repeated Transaction transactions = 1;
+}
+
+message CreateCreditRequest {
+    string account_id = 1;
+    google.type.Money amount = 2;
+    int64 month = 3;
+}
+
+message CreateCreditResponse {
+    string id = 1;
+    int64 interest_rate = 2;
+    int64 months = 3;
+}
+
+message GetPaymentScheduleRequest {
+    string credit_id = 1;
+}
+
+message GetPaymentScheduleResponse {
+    message Payment {
+        enum Status {
+            UNKNOWN = 0;
+            PENDING = 1;
+            OVERDUE = 2;
+            PAID = 3;
+        }
+
+        string ID = 1;
+        string CreditID = 2;
+        google.protobuf.Timestamp due_date = 3;
+        google.type.Money amount = 4;
+        google.type.Money penalty = 5;
+        Status status = 6;
+        google.protobuf.Timestamp paid_at = 7;
+    }
+    repeated Payment payments = 1;
+}
