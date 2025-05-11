@@ -13,5 +13,5 @@
 
 ## API
 
-См. [Swagger.json]([https://example.com/swagger-ui/index.html](https://github.com/inqast/bank-system/blob/main/pkg/api/api.swagger.json))
+См. [Swagger.json](https://github.com/inqast/bank-system/blob/main/pkg/api/api.swagger.json)
 
