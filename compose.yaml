@@ -1,0 +1,14 @@
+volumes:
+  postgresql_data:
+
+services:
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    env_file:
+      - ./db.env
+    container_name: db
