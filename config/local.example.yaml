@@ -1,0 +1,23 @@
+pg_config:
+  username: "postgres"
+  password: "postgres"
+  host: "localhost"
+  port: "5432"
+  database: "postgres"
+
+crypto:
+  jwt_secret: "a+1rfLMAklX0O7pXT+wT3pogFxMJP78WuL/3cwK9O74="
+  pgp_public_path: "./crypto/public.asc"
+  pgp_private_path: "./crypto/private.asc"
+  hmac_secret: "W5wU/gPn/BzyJ0U3jbajIRGxIaXtrrGLATmDsgvrQe8="
+
+smtp:
+  host: "example.mail"
+  Port: 25
+  user: "user"
+  pass: "1234"
+  email: "bank@example.com"
+  name: "bank"
+
+business:
+  margin: 5
